@@ -1,0 +1,85 @@
+
+{%extends 'layout.html'%}
+{%load static%}
+
+{%block title%}{{category}} products{%endblock title%}
+
+{% block content %}
+
+    <!-- Products Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">{{category}} Products</span></h2>
+        <div class="row px-xl-5"> 
+            {% if products|length == 0  %}
+                <p1>HENÜZ BU KATEGORİDE HİÇBİR ÜRÜN YOK.</p1>
+            {% else %}
+                {% for product in products %}
+
+                    {% include 'partials/product_item.html' with product=product %}
+
+                {% endfor %}
+            {% endif %} 
+
+        </div>
+    </div>
+    <!-- Products End -->
+
+    <!-- Offer Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <div class="row px-xl-5">
+            <div class="col-md-6">
+                <div class="product-offer mb-30" style="height: 300px;">
+                    <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_oFm0R1vwdxadKEpTo3JQU2mCFZ8UyC3wOg&usqp=CAU" alt="">
+                    <div class="offer-text">
+                        <h6 class="text-white text-uppercase">Save 20%</h6>
+                        <h3 class="text-white mb-3">Special Offer</h3>
+                        <a href="./woman" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-offer mb-30" style="height: 300px;">
+                    <img class="img-fluid" src="https://i.ytimg.com/vi/ZhrRzTZEK60/mqdefault.jpg" alt="">
+                    <div class="offer-text">
+                        <h6 class="text-white text-uppercase">Save 20%</h6>
+                        <h3 class="text-white mb-3">Special Offer</h3>
+                        <a href="./man" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Offer End -->
+
+
+    <!-- Products Start -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent Products</span></h2>
+        <div class="row px-xl-5">
+
+                {% for product in recent_products %}
+                    {% include 'partials/product_item.html' with product=product %}
+                {% endfor %}
+            
+        </div>
+    </div>  
+    <!-- Products End -->
+
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5">
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel vendor-carousel">
+                    {% for i in "12345678" %}
+                        <div class="bg-light p-4">
+                            <img src="{% static 'img/vendor-'|add:i|add:'.jpg' %}" alt="">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+{% endblock content %}
