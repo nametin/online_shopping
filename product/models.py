@@ -17,4 +17,4 @@ class ProductImage(models.Model):
     image_url = models.URLField(max_length=500, default="")
 
     def __str__(self):
-        return self.product_id.product_name
+        return self.image_url
