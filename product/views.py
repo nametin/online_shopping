@@ -1,16 +1,8 @@
 from django.shortcuts import render
 from .models import Product
-from django.db.models import Q
 
 # Create your views here.
 
-def index(request):
-    products = Product.objects.all()[:12]
-    recent_products = Product.objects.filter().order_by('-time')[:12]
-    return render(request, "product/index.html",{
-        "products": products,
-        "recent_products": recent_products,
-    })
 
 def details(request, product_id):
     product=Product.objects.get(product_id=product_id)
@@ -26,17 +18,6 @@ def details(request, product_id):
         }
     )
     
-def category(request,category):
-    products = Product.objects.filter(Q(category__iexact=category))
-    recent_products = Product.objects.filter().order_by('-time')[:12]
-    return render(request, "product/category.html", {
-        "category" : category,
-        "products": products,
-        "recent_products": recent_products,
-        "search": False,
-    }
-)
-
 def list(request):
     recent_products = Product.objects.filter().order_by('-time')[:12]
     
@@ -46,10 +27,11 @@ def list(request):
     else: 
         products = list()
         
-    return render(request, "product/category.html", {
+    return render(request, "root/category.html", {
         "products": products,
         "recent_products": recent_products,
         "search": True,
         "query": q,
         }
     )
+    
