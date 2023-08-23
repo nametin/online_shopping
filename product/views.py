@@ -27,7 +27,7 @@ def list(request):
     else: 
         products = list()
         
-    return render(request, "root/category.html", {
+    return render(request, "common/category.html", {
         "products": products,
         "recent_products": recent_products,
         "search": True,
